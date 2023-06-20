@@ -26,11 +26,11 @@ public class CreditController {
     @GetMapping
     public List<Account> getAccounts() {
         // For testing purposes only
-        this.creditService.createAccount(200.0);
-        this.creditService.createAccount(201.0);
-        this.creditService.createAccount(202.0);
-        this.creditService.createAccount(203.0);
-        this.creditService.createAccount(204.0);
+//        this.creditService.createAccount(200.0);
+//        this.creditService.createAccount(201.0);
+//        this.creditService.createAccount(202.0);
+//        this.creditService.createAccount(203.0);
+//        this.creditService.createAccount(204.0);
         return creditService.getAccounts();
     }
 }
