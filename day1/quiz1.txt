@@ -1,0 +1,13 @@
+1. Enterprise
+2. Something that we have to write over and over again, like a template that we use
+as a starting point for a code (e.g. public static void main). Java is known for being boilerplate for most of the time,
+but recently I heard there are changes to it, that makes it less boilerplate in the future versions.
+3. Spring Framework
+4. Pivotal Software
+5. https://start.spring.io/
+6. It means it can run independently without the need of external servers. This is where the use JAR and not make WAR comes from.
+7-9. The way I understand it, it's how we provide dependencies to a given class from any other external sources rather than us
+manually declaring those dependencies ourselves. In SpringBoot, we declare service @Service to let the class referencing it that it's a service
+and we use @AutoWired so it automatically finds or connect which class should it connect to. All in all, this is where we make our
+code elegant and connected efficiently.
+10. mvn spring-boot:run
