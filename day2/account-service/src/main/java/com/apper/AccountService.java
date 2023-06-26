@@ -1,21 +1,31 @@
 package com.apper;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class AccountService {
 
-    private List<Account> accounts = new ArrayList<>();
+    private final List<Account> accounts = new ArrayList<>();
 
-    public Account create(String firstName, String lastName, String username, String clearPassword) {
+    private final IdGeneratorService idGeneratorService;
+
+    @Autowired
+    public AccountService(IdGeneratorService idGeneratorService) {
+        this.idGeneratorService = idGeneratorService;
+    }
+
+    public Account create(String firstName,
+                          String lastName,
+                          String username,
+                          String clearPassword) {
         Account account = new Account();
 
-        String id = UUID.randomUUID().toString();
+        String id = idGeneratorService.getNextId();
         System.out.println("Generated id: " + id);
 
         account.setId(id);
@@ -29,7 +39,7 @@ public class AccountService {
         account.setLastName(lastName);
         account.setUsername(username);
         account.setClearPassword(clearPassword);
-        account.setVerificationCode("QW345T");
+        account.setVerificationCode(idGeneratorService.generateRandomCharacters(6));
 
         accounts.add(account);
 
@@ -42,15 +52,50 @@ public class AccountService {
                 return account;
             }
         }
-
         return null;
     }
-//
-//    public void update() {
-//
-//    }
-//
-//    public void delete() {
-//
-//    }
+
+    public List<Account> getAll() {
+        return accounts;
+    }
+
+    public void update(String id,
+                       String firstName,
+                       String lastName,
+                       String username,
+                       String clearPassword) {
+        boolean isUpdated = false;
+        for (int i = 0; i < accounts.size(); i++) {
+            Account updatedAccount = accounts.get(i);
+            if(updatedAccount.getId().equals(id)) {
+                if(firstName != null) {
+                    updatedAccount.setFirstName(firstName);
+                    isUpdated = true;
+                }
+                if(lastName != null) {
+                    updatedAccount.setLastName(lastName);
+                    isUpdated = true;
+                }
+                if(username != null) {
+                    updatedAccount.setUsername(username);
+                    isUpdated = true;
+                }
+                if(clearPassword != null) {
+                    updatedAccount.setClearPassword(clearPassword);
+                    isUpdated = true;
+                }
+
+                if(isUpdated) {
+                    updatedAccount.setLastUpdated(LocalDateTime.now()); // Update time of last update
+                    accounts.set(i, updatedAccount); // Update the account in the list
+                }
+                break; // Done with the update
+            }
+        }
+    }
+
+    public void delete(String id) {
+        Account accountToDelete = get(id);
+        if(accountToDelete != null) accounts.remove(accountToDelete);
+    }
 }

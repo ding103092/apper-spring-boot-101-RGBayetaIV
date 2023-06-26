@@ -1,4 +1,4 @@
-package com.apper;
+package com.apper.response;
 
 import lombok.Data;
 

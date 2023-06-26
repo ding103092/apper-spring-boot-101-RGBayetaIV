@@ -1,0 +1,52 @@
+Spring Boot | Laboratory 1
+
+EMAIL SUBJECT: [Spring Boot 101 | Lab] <name>
+
+ID Generator Service
+1. Create `IdGeneratorService` with `generateRandomCharacters(int length)` and `getNextId()`. Make this a spring bean.
+2. Use `generateRandomCharacters` for generating verificationCode (size: 6)
+3. Use `getNextId()` for generating accountId.
+4. For #2, you can base here: https://www.baeldung.com/java-random-string (#8)
+    @Test
+    public void givenUsingApache_whenGeneratingRandomAlphanumericString_thenCorrect() {
+        String generatedString = RandomStringUtils.randomAlphanumeric(10);
+
+        System.out.println(generatedString);
+    }
+
+    Add the following dependency:
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.12.0</version>
+    </dependency>
+
+Update account
+1. Create an ReST API to update an account. Here's the design:
+    PUT /account/<account_id>
+    Header -- Content-Type: application/json
+    {
+        //reuse CreateAccountRequest
+    }
+
+    NOTE: `PUT` means OVERRIDING the whole resource with id <account_id>, PATCH means you are attempting to update the field/s in the body
+2. Response is:
+    200 OK
+    {
+        "lastUpdate": <last date updated>
+    }
+
+Delete account
+1. Create an ReST API to delete an account. Here's the design:
+    DELETE /account/<account_id>
+2. Response is:
+    204 NO CONTENT
+
+
+All are happy flow. No validation. So have an extra caution with invalid inputs like account is not yet registered.
+
+For all who opt to submit the laboratory up until 11:59PM:
+1. In creating an account, validate if the username is already registered. If yes, throw an exception `UsernameAlreadyRegisteredException.class`.
+2. In retrieving an account, validate if the account_id exist. If no, throw an exception `AccountNotFoundException.class`.
+
+Note: Testing the validations should return 400 and 404 HTTP response respectively. This is already being handled by the exceptions.

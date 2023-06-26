@@ -1,4 +1,4 @@
-package com.apper;
+package com.apper.response;
 
 import lombok.Data;
 
@@ -12,4 +12,6 @@ public class GetAccountResponse {
 
     private String username;
     private LocalDateTime registrationDate;
+
+    private String accountId;
 }
