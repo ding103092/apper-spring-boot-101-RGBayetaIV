@@ -1,3 +1,6 @@
+### No account registered yet
+GET http://localhost:8080/account
+
 ### Add Account 1
 POST http://localhost:8080/account
 Content-Type: application/json
@@ -34,11 +37,14 @@ Content-Type: application/json
 ### Get all
 GET http://localhost:8080/account
 
-### Get Account 1
-GET http://localhost:8080/account/0e937752-8320-433e-9a87-34bc6921ddf9
+### Get Account 1 (Copy paste it from previous)
+GET http://localhost:8080/account/1a022dce-1749-44cf-a860-fdfdf4e6e076
+
+### Get Unknown
+GET http://localhost:8080/account/42069
 
 ### Update Account 1
-PUT http://localhost:8080/account/0e937752-8320-433e-9a87-34bc6921ddf9
+PUT http://localhost:8080/account/1a022dce-1749-44cf-a860-fdfdf4e6e076
 Content-Type: application/json
 
 {
@@ -49,10 +55,10 @@ Content-Type: application/json
 }
 
 ### Get Account 1
-GET http://localhost:8080/account/0e937752-8320-433e-9a87-34bc6921ddf9
+GET http://localhost:8080/account/1a022dce-1749-44cf-a860-fdfdf4e6e076
 
-### Delete Account 3
-DELETE http://localhost:8080/account/7192d427-3e79-422d-898e-6461be44bacc
+### Delete Account 1
+DELETE http://localhost:8080/account/1a022dce-1749-44cf-a860-fdfdf4e6e076
 
 ### Get all
 GET http://localhost:8080/account
