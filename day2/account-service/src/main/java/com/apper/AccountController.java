@@ -1,5 +1,8 @@
 package com.apper;
 
+import com.apper.exception.AccountNotFoundException;
+import com.apper.exception.NoRegisteredAccountsException;
+import com.apper.exception.UsernameAlreadyRegisteredException;
 import com.apper.request.CreateAccountRequest;
 import com.apper.request.PutAccountRequest;
 import com.apper.response.CreateAccountResponse;
@@ -24,8 +27,13 @@ public class AccountController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateAccountResponse createAccount(@RequestBody CreateAccountRequest request) {
-        Account account= accountService.create(request.getFirstName(), request.getLastName(), request.getEmail(), request.getPassword());
+    public CreateAccountResponse createAccount(@RequestBody CreateAccountRequest request)
+            throws UsernameAlreadyRegisteredException {
+        Account account = accountService.create(
+                request.getFirstName(),
+                request.getLastName(),
+                request.getEmail(),
+                request.getPassword());
 
         CreateAccountResponse response = new CreateAccountResponse();
         response.setVerificationCode(account.getVerificationCode());
@@ -34,14 +42,14 @@ public class AccountController {
     }
 
     @GetMapping("{accountId}")
-    public GetAccountResponse getAccount(@PathVariable String accountId) {
+    public GetAccountResponse getAccount(@PathVariable String accountId) throws AccountNotFoundException {
         Account account = accountService.get(accountId);
 
         return createGetAccountResponse(account);
     }
 
     @GetMapping
-    public List<GetAccountResponse> getAllAccounts() {
+    public List<GetAccountResponse> getAllAccounts() throws NoRegisteredAccountsException {
         List<GetAccountResponse> responseList = new ArrayList<>();
 
         for (Account account : accountService.getAll()) {
@@ -65,7 +73,7 @@ public class AccountController {
 
     @DeleteMapping(path = "{accountId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public DeleteAccountResponse deleteAccount(@PathVariable String accountId) {
+    public DeleteAccountResponse deleteAccount(@PathVariable String accountId) throws AccountNotFoundException {
         accountService.delete(accountId);
         DeleteAccountResponse response = new DeleteAccountResponse();
         response.setDeleteMessage(accountId + " has been successfully deleted.");
@@ -74,7 +82,10 @@ public class AccountController {
 
     @PutMapping(path = "{accountId}")
     @ResponseStatus(HttpStatus.OK)
-    public PutAccountResponse putAccount(@RequestBody PutAccountRequest request, @PathVariable String accountId) {
+    public PutAccountResponse putAccount(
+            @RequestBody PutAccountRequest request,
+            @PathVariable String accountId)
+            throws AccountNotFoundException {
         accountService.update(
                 accountId,
                 request.getFirstName(),

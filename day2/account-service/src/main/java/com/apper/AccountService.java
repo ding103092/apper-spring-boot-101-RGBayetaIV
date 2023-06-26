@@ -1,5 +1,8 @@
 package com.apper;
 
+import com.apper.exception.AccountNotFoundException;
+import com.apper.exception.NoRegisteredAccountsException;
+import com.apper.exception.UsernameAlreadyRegisteredException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +25,13 @@ public class AccountService {
     public Account create(String firstName,
                           String lastName,
                           String username,
-                          String clearPassword) {
+                          String clearPassword)
+            throws UsernameAlreadyRegisteredException {
+
+        if (isUsernameRegistered(username)) {
+            throw new UsernameAlreadyRegisteredException("Username already registered.");
+        }
+
         Account account = new Account();
 
         String id = idGeneratorService.getNextId();
@@ -46,16 +55,16 @@ public class AccountService {
         return account;
     }
 
-    public Account get(String accountId) {
-        for (Account account : accounts) {
-            if (account.getId().equals(accountId)) {
-                return account;
-            }
+    public Account get(String accountId) throws AccountNotFoundException {
+        Account account = findAccountById(accountId);
+        if (account == null) {
+            throw new AccountNotFoundException("Account not found.");
         }
-        return null;
+        return account;
     }
 
-    public List<Account> getAll() {
+    public List<Account> getAll() throws NoRegisteredAccountsException {
+        if(accounts.isEmpty()) throw new NoRegisteredAccountsException("No registered accounts.");
         return accounts;
     }
 
@@ -94,8 +103,27 @@ public class AccountService {
         }
     }
 
-    public void delete(String id) {
+    public void delete(String id) throws AccountNotFoundException {
         Account accountToDelete = get(id);
         if(accountToDelete != null) accounts.remove(accountToDelete);
+    }
+
+    /* HELPER FUNCTIONS */
+    private Account findAccountById(String accountId) {
+        for (Account account : accounts) {
+            if (account.getId().equals(accountId)) {
+                return account;
+            }
+        }
+        return null;
+    }
+
+    public boolean isUsernameRegistered(String username) {
+        for (Account account : accounts) {
+            if (account.getUsername().equals(username)) {
+                return true;
+            }
+        }
+        return false;
     }
 }
