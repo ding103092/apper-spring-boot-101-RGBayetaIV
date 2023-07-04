@@ -1,0 +1,10 @@
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+"email": "jdoeadsa@apper.com",
+"password": "69420xdd",
+"first_name": "xdd",
+"last_name": "xpp",
+"birth_date": "2010-10-10"
+}
