@@ -11,3 +11,6 @@ Also fully complied with https://github.com/orvyl/account-service/blob/master/la
 See demo: https://youtu.be/7K3KBtSxlTE (Shows all possible actions, I think)
 
 Using the IntelliJ Ultimate, I used the HTTP Request instead of Postman API Platform. I think next session will include mysql with mini-nocash app (debit, credit) logic applied. Will read more on Springboot and MySQL before that session. :)
+
+### Day 4
+Tested all, refer to https://github.com/ding103092/apper-spring-boot-101-RGBayetaIV/blob/main/day4/the-blog/src/tbshttprequest.http for all testing done.
