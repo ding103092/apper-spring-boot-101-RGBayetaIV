@@ -8,5 +8,6 @@ import java.util.List;
 
 @Repository
 public interface BlogRepository extends CrudRepository<Blog, String> {
+
     List<Blog> findAllByBloggerId(String bloggerId);
 }

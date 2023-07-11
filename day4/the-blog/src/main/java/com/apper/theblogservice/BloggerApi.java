@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("blogger")
 public class BloggerApi {
 
     private final BloggerService bloggerService;
@@ -24,7 +25,7 @@ public class BloggerApi {
         this.bloggerService = bloggerService;
     }
 
-    @PostMapping(path="/blogger")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CreateBloggerResponse registerBlogger(@RequestBody @Valid CreateBloggerRequest request) throws EmailAlreadyRegisteredException {
         // System.out.println(request);
@@ -55,7 +56,6 @@ public class BloggerApi {
     }
 
     @PutMapping(path="/blog/{blog_id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
     public CreateBlogResponse updateBlog(@PathVariable String blog_id, @RequestBody @Valid CreateBlogRequest request) throws BlogNotFoundException {
 
         Blog createdBlog = bloggerService.updateBlog(request.getTitle(), request.getBody(), blog_id);
@@ -69,8 +69,7 @@ public class BloggerApi {
         return response;
     }
 
-    @GetMapping(path="/blogger/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("{id}")
     public GetBloggerResponse getBlogger(@PathVariable String id) throws BloggerNotFoundException {
         Blogger blogger = bloggerService.getBlogger(id);
 
@@ -84,15 +83,13 @@ public class BloggerApi {
     }
 
     @GetMapping(path="/blog/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public GetBlogResponse getBlog(@PathVariable String id) throws BlogNotFoundException {
         Blog blog = bloggerService.getBlog(id);
 
         return getGetBlogResponse(blog);
     }
 
-    @GetMapping(path="/blogger")
-    @ResponseStatus(HttpStatus.OK)
+    @GetMapping()
     public List<GetBloggerResponse> getAllBloggers() throws BloggerNotFoundException {
         List<Blogger> bloggers = bloggerService.getAllBloggers();
 
@@ -115,7 +112,6 @@ public class BloggerApi {
     }
 
     @GetMapping(path="/blog")
-    @ResponseStatus(HttpStatus.OK)
     public List<GetBlogResponse> getAllBlogs() throws BlogNotFoundException {
         List<Blog> blogs = bloggerService.getAllBlogs();
 
@@ -131,7 +127,6 @@ public class BloggerApi {
     }
 
     @GetMapping(path="/blog/blogger/{blogger_id}")
-    @ResponseStatus(HttpStatus.OK)
     public List<GetBlogResponse> getAllBlogsByBloggerId(@PathVariable String blogger_id) throws BloggerNotFoundException, BlogNotFoundException {
         List<Blog> blogs = bloggerService.getAllBlogsByBloggerId(blogger_id);
 

@@ -21,7 +21,7 @@ Content-Type: application/json
 
 ### Test 2: Get Blogger
 ### Format: GET http://localhost:8080/blogger/<id>
-GET http://localhost:8080/blogger/8d0297d5-fc5a-4fba-999c-9dc07de95874
+GET http://localhost:8080/blogger/a3becf3c-df45-4120-a276-127ddc51d94f
 
 ### Test 3: Get All Bloggers
 
@@ -29,46 +29,46 @@ GET http://localhost:8080/blogger
 
 ### Test 4: Create Blog for User 1
 
-POST http://localhost:8080/blog
+POST http://localhost:8080/blogger/blog
 Content-Type: application/json
 
 {
   "title": "This is the title for 1st blog of User001",
   "body": "This is the actual content of User001 blog1",
-  "blogger_id": "8d0297d5-fc5a-4fba-999c-9dc07de95874"
+  "blogger_id": "a3becf3c-df45-4120-a276-127ddc51d94f"
 }
 
 ### Test 4.1: Create another blog for User 1
 
-POST http://localhost:8080/blog
+POST http://localhost:8080/blogger/blog
 Content-Type: application/json
 
 {
   "title": "This is the title for 2nd blog of User001",
   "body": "This is the actual content of User001 blog2",
-  "blogger_id": "8d0297d5-fc5a-4fba-999c-9dc07de95874"
+  "blogger_id": "a3becf3c-df45-4120-a276-127ddc51d94f"
 }
 
 
 ### Test 4.2: Create a blog for User 2
 
-POST http://localhost:8080/blog
+POST http://localhost:8080/blogger/blog
 Content-Type: application/json
 
 {
   "title": "This is the title for 1st blog of User002",
   "body": "This is the actual content of User001 blog1",
-  "blogger_id": "386da5c2-4237-4932-ad44-2cae2821b9d1"
+  "blogger_id": "eb7c640d-2454-490b-b88f-a6e8e2574529"
 }
 
 ### Test 5: Get All Blogs
-GET http://localhost:8080/blog
+GET http://localhost:8080/blogger/blog
 
 ### Test 6: Get a Blog from its id
-GET http://localhost:8080/blog/9d59aaff-a70d-4e82-b2b8-277bd82917cf
+GET http://localhost:8080/blogger/blog/63446239-2a2a-4722-a701-5d686d888ef6
 
 ### Test 7: Update a blog of User 1
-PUT http://localhost:8080/blog/9d59aaff-a70d-4e82-b2b8-277bd82917cf
+PUT http://localhost:8080/blogger/blog/63446239-2a2a-4722-a701-5d686d888ef6
 Content-Type: application/json
 
 {
@@ -79,4 +79,4 @@ Content-Type: application/json
 
 ### Test 8: Get All blogs by blogger (User 1)
 ### This also confirms Test 7
-GET http://localhost:8080/blog/blogger/8d0297d5-fc5a-4fba-999c-9dc07de95874
+GET http://localhost:8080/blogger/blog/blogger/a3becf3c-df45-4120-a276-127ddc51d94f
