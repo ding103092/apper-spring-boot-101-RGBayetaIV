@@ -3,12 +3,14 @@ package com.apper.theblogservice.service;
 import com.apper.theblogservice.exception.BlogNotFoundException;
 import com.apper.theblogservice.exception.BloggerNotFoundException;
 import com.apper.theblogservice.exception.EmailAlreadyRegisteredException;
+import com.apper.theblogservice.exception.InvalidBloggerIdException;
 import com.apper.theblogservice.model.Blog;
 import com.apper.theblogservice.model.Blogger;
 import com.apper.theblogservice.repository.BlogRepository;
 import com.apper.theblogservice.repository.BloggerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -42,7 +44,11 @@ public class BloggerService {
         return bloggerRepository.save(blogger);
     }
 
-    public Blog createBlog(String title, String body, String bloggerId) throws BloggerNotFoundException {
+    public Blog createBlog(String title, String body, String bloggerId) throws BloggerNotFoundException, InvalidBloggerIdException {
+        if(bloggerId.equals("")) {
+            throw new InvalidBloggerIdException("`blogger_id` cannot be empty");
+        }
+
         if(!isBloggerRegistered(bloggerId)) {
             throw new BloggerNotFoundException("No registered blogger found with id: " + bloggerId);
         }

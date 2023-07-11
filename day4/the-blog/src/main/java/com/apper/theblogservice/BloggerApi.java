@@ -3,6 +3,7 @@ package com.apper.theblogservice;
 import com.apper.theblogservice.exception.BlogNotFoundException;
 import com.apper.theblogservice.exception.BloggerNotFoundException;
 import com.apper.theblogservice.exception.EmailAlreadyRegisteredException;
+import com.apper.theblogservice.exception.InvalidBloggerIdException;
 import com.apper.theblogservice.model.Blog;
 import com.apper.theblogservice.model.Blogger;
 import com.apper.theblogservice.payload.*;
@@ -40,7 +41,7 @@ public class BloggerApi {
 
     @PostMapping(path="/blog")
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateBlogResponse createBlog(@RequestBody @Valid CreateBlogRequest request) throws BloggerNotFoundException {
+    public CreateBlogResponse createBlog(@RequestBody @Valid CreateBlogRequest request) throws BloggerNotFoundException, InvalidBloggerIdException {
         // System.out.println(request);
 
         Blog createdBlog = bloggerService.createBlog(request.getTitle(), request.getBody(), request.getBloggerId());

@@ -3,6 +3,7 @@ package com.apper.theblogservice.service;
 import com.apper.theblogservice.exception.BlogNotFoundException;
 import com.apper.theblogservice.exception.BloggerNotFoundException;
 import com.apper.theblogservice.exception.EmailAlreadyRegisteredException;
+import com.apper.theblogservice.exception.InvalidBloggerIdException;
 import com.apper.theblogservice.payload.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -30,6 +31,16 @@ public class BloggerServiceExceptionHandler {
     @ResponseStatus(HttpStatus.BAD_REQUEST) // 400
     @ResponseBody
     public ErrorResponse handleEmailAlreadyRegisteredException(EmailAlreadyRegisteredException ex) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setError(ex.getClass().getSimpleName());
+        errorResponse.setMessage(ex.getMessage());
+        return errorResponse;
+    }
+
+    @ExceptionHandler(InvalidBloggerIdException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST) // 400
+    @ResponseBody
+    public ErrorResponse handleInvalidBloggerIdException(InvalidBloggerIdException ex) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setError(ex.getClass().getSimpleName());
         errorResponse.setMessage(ex.getMessage());
