@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,7 +84,7 @@ public class BloggerService {
 
 
     public Blog updateBlog(String title, String body, String blogId) throws BlogNotFoundException {
-        if(!isBlogCreated(blogId)) {
+        if(!isBlockExists(blogId)) {
             throw new BlogNotFoundException("No such blog found with id: " + blogId);
         }
         Optional<Blog> selectedBlog = blogRepository.findById(blogId);
@@ -107,7 +106,7 @@ public class BloggerService {
         return bloggerRepository.existsById(bloggerId);
     }
 
-    private boolean isBlogCreated(String blogId) {
+    private boolean isBlockExists(String blogId) {
         return blogRepository.existsById(blogId);
     }
 

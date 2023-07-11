@@ -1,5 +1,6 @@
 package com.apper.theblogservice.service;
 
+import com.apper.theblogservice.exception.BlogNotFoundException;
 import com.apper.theblogservice.exception.BloggerNotFoundException;
 import com.apper.theblogservice.exception.EmailAlreadyRegisteredException;
 import com.apper.theblogservice.payload.ErrorResponse;
@@ -39,6 +40,16 @@ public class BloggerServiceExceptionHandler {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ResponseBody
     public ErrorResponse handleBloggerNotFoundException(BloggerNotFoundException ex) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setError(ex.getClass().getSimpleName());
+        errorResponse.setMessage(ex.getMessage());
+        return errorResponse;
+    }
+
+    @ExceptionHandler(BlogNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ResponseBody
+    public ErrorResponse handleBlogNotFoundException(BlogNotFoundException ex) {
         ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setError(ex.getClass().getSimpleName());
         errorResponse.setMessage(ex.getMessage());

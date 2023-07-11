@@ -13,7 +13,6 @@ public class CreateBlogRequest {
     @NotBlank(message = "`body` is required")
     private String body;
 
-    @NotBlank(message = "`blogger_id` is required")
     @JsonProperty("blogger_id")
     private String bloggerId;
 }

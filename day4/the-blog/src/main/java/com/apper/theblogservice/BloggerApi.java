@@ -58,7 +58,7 @@ public class BloggerApi {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public CreateBlogResponse updateBlog(@PathVariable String blog_id, @RequestBody @Valid CreateBlogRequest request) throws BlogNotFoundException {
 
-        Blog createdBlog = bloggerService.updateBlog(request.getTitle(), request.getBody(), blog_id);
+        Blog createdBlog = bloggerService.updateBlog(request.getTitle(), request.getBody(), blog_id.replace("/blog",""));
 
         CreateBlogResponse response = new CreateBlogResponse();
         response.setId(createdBlog.getId());

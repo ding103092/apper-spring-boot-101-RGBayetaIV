@@ -35,7 +35,7 @@ Content-Type: application/json
 {
   "title": "This is the title for 1st blog of User001",
   "body": "This is the actual content of User001 blog1",
-  "blogger_id": "8d0297d5-fc5a-4fba-999c-9dc07de95874"
+  "blogger_id": "89392716-332c-4372-8907-834d60187f63"
 }
 
 ### Test 4.1: Create another blog for User 1
@@ -68,15 +68,14 @@ GET http://localhost:8080/blog
 GET http://localhost:8080/blog/9d59aaff-a70d-4e82-b2b8-277bd82917cf
 
 ### Test 7: Update a blog of User 1
-PUT http://localhost:8080/blog/9d59aaff-a70d-4e82-b2b8-277bd82917cf
+PUT http://localhost:8080/blog/160bcb93-1ead-4474-9699-ac95fa7e9132
 Content-Type: application/json
 
 {
   "title": "Updated User1 Blog1: SKT #1",
-  "body": "SKT will win #Worlds2023",
-  "blogger_id": "08aae12c-76b4-4a0c-8e2f-c2c7c440064d"
+  "body": "SKT will win #Worlds2023"
 }
 
 ### Test 8: Get All blogs by blogger (User 1)
 ### This also confirms Test 7
-GET http://localhost:8080/blog/blogger/8d0297d5-fc5a-4fba-999c-9dc07de95874
+GET http://localhost:8080/blog/blogger/89392716-332c-4372-8907-834d60187f63
