@@ -14,3 +14,4 @@ Using the IntelliJ Ultimate, I used the HTTP Request instead of Postman API Plat
 
 ### Day 4
 Tested all, refer to https://github.com/ding103092/apper-spring-boot-101-RGBayetaIV/blob/main/day4/the-blog/src/tbshttprequest.http for all testing done.
+Do note that all prompts related to ID must be manually edited, as it's randomly generated
