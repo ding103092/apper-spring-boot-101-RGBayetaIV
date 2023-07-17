@@ -10,7 +10,6 @@ import com.apper.theblogservice.repository.BlogRepository;
 import com.apper.theblogservice.repository.BloggerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -90,7 +89,7 @@ public class BloggerService {
 
 
     public Blog updateBlog(String title, String body, String blogId) throws BlogNotFoundException {
-        if(!isBlockExists(blogId)) {
+        if(!isBlogExists(blogId)) {
             throw new BlogNotFoundException("No such blog found with id: " + blogId);
         }
         Optional<Blog> selectedBlog = blogRepository.findById(blogId);
@@ -112,7 +111,7 @@ public class BloggerService {
         return bloggerRepository.existsById(bloggerId);
     }
 
-    private boolean isBlockExists(String blogId) {
+    private boolean isBlogExists(String blogId) {
         return blogRepository.existsById(blogId);
     }
 
