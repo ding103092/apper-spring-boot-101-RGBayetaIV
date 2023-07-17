@@ -1,0 +1,13 @@
+In learning Springboot, I realized that having strong background in Java really helps.
+Just by knowing the syntax and concept of Java helped me easily grasp the core principles of Springboot.
+
+Working with Springboot, Docker, and MySQL has been relatively easy as well. I found the integration of
+Springboot with CRUD operations with SQL databases really great, since it's very intuitive. All we need to remember
+is to ensure that the configurations of Springboot and Docker Container is compatible (e.g. ports) so that we can
+establish a successful conneciton. It also helps to read documentation whenever there's a blocker.
+
+Honestly, what I really really need is experience to familiarize myself more on production-level code, and see
+how these things come together. When you are learning it, we are essentially doing everything from scratch, which 
+is far from what we are expected to do during actual work.
+
+I am looking forward on what lies ahead in my journey as a Software Engineer. :)

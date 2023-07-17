@@ -1,0 +1,35 @@
+I am writing this as someone who has relatively strong foundation in Java from my undergrad studies.
+I studied ComputerEng in uni, and I did most of my projects in Java back then.
+
+Here goes my review of the subject.
+
+let parcipants = students
+
+Positive aspects:
+- Demonstrated strong command in the subject
+- Good explanations and insights
+- I like it when the instructor references the industry practice during explanation
+- I like the ice breaker where a question is asked before the formal start of lecture
+- Always helps when a participant is asking for it
+
+Areas for improvement:
+- DOCUMENTATION. It could be enhanced to provided clearer instructions and other resources to follow.
+By investing in better documentation, you only need to invest time for one curriculum, and you can reuse
+it for the future, and will only need to update what is needed.
+It should follow, at the very least, the flow of:
+* Link to the slide used in class
+* Here's the activity (all requirements explained)
+* Instructions on the repository to be created
+* How to submit
+* References as guide
+- Activity instructions would benefit by giving step-by-step (for beginners)
+- Consider having optional advanced-level challenges in activities
+- Remember that most of the participants are beginners, they might have a hard time absorbing knowledge
+- Just do the quizzes in Google Forms
+- Stop asking the participant to raise hand if they are done. Raise hand is meant to be used if someone wants
+to ask questions. Just ask if someone is having an issue, and assume the ones who did not raise their hand is good
+on their end.
+- Notes/scratch should NOT be graded. I don't want to force myself to take notes if I already know about what is being taught.
+- An alternative to notes should be an optional activity for advanced students. So they can demonstrate their skills.
+- When you are doing a demo-code, always push it to your repo, and share it with the class. So everyone can follow. It should be
+the participant's fault if they do not know how to git.
